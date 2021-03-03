@@ -1,0 +1,23 @@
+version: '2.1'
+
+orbs:
+  circleci-cli: circleci/circleci-cli@0.1.9
+
+executors:
+  main:
+    docker:
+      - image: cimg/base:2020.10
+
+jobs:
+  test:
+    executor: main
+    steps:
+      - checkout
+      - cli/install
+      - run: circleci orb validate orb.yml
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - test
