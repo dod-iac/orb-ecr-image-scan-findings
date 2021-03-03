@@ -66,6 +66,11 @@ commands:
             fi
 
 jobs:
+  setup:
+    executor: main
+    steps:
+      - aws-cli/setup
+      - jq/install
   scan:
     parameters:
       aws-role-arn:
@@ -84,8 +89,6 @@ jobs:
         description: An object with identifying information for an Amazon ECR image. Either 'imageDigest=string' or 'imageTag=string'.
     executor: main
     steps:
-      - aws-cli/setup
-      - jq/install
       - scan:
           aws-role-arn: << parameters.aws-role-arn >>
           aws-role-session-name: << parameters.aws-role-session-name >>
