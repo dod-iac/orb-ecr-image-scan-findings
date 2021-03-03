@@ -6,6 +6,21 @@ display:
   home_url: https://dds.mil/
   source_url: https://github.com/dod-iac/orb-ecr-image-scan-findings
 
+examples:
+    simple_install_and_configure:
+        description: Install the required CLI utilities, if not available
+        usage:
+            orbs:
+              orb-ecr-image-scan-findings: dod-iac/orb-ecr-image-scan-findings@1.0.0
+            version: 2.1
+            workflows:
+                install_and_configure_cli:
+                    jobs:
+                        - orb-ecr-image-scan-findings/setup
+                        - orb-ecr-image-scan-findings/scan:
+                            ecr-repository-name: repo-name
+                            ecr-image-id: image-id
+
 orbs:
   aws-cli: circleci/aws-cli@1.4.0
   jq: circleci/jq@2.2.0
@@ -17,17 +32,19 @@ commands:
       aws-role-arn:
         type: string
         description: The ARN of the role to assume. Must have IAM action ecr:DescribeImageScanFindings.
-        default: ""
+        default: AWS_ROLE_ARN
       aws-role-session-name:
         type: string
         description: An identifier for the assumed role session.
-        default: "circleci"
+        default: AWS_ROLE_SESSION_NAME
       ecr-repository-name:
         type: string
         description: The name of the ECR repository where the image has been uploaded and scanned
+        default: ECR_REPOSITORY_NAME
       ecr-image-id:
         type: string
         description: An object with identifying information for an Amazon ECR image. Either 'imageDigest=string' or 'imageTag=string'.
+        default: ECR_IMAGE_ID
     steps:
       - run:
           command: |
@@ -76,17 +93,19 @@ jobs:
       aws-role-arn:
         type: string
         description: The ARN of the role to assume. Must have IAM action ecr:DescribeImageScanFindings.
-        default: ""
+        default: AWS_ROLE_ARN
       aws-role-session-name:
         type: string
         description: An identifier for the assumed role session.
-        default: "circleci"
+        default: AWS_ROLE_SESSION_NAME
       ecr-repository-name:
         type: string
         description: The name of the ECR repository where the image has been uploaded and scanned
+        default: ECR_REPOSITORY_NAME
       ecr-image-id:
         type: string
         description: An object with identifying information for an Amazon ECR image. Either 'imageDigest=string' or 'imageTag=string'.
+        default: ECR_IMAGE_ID
     executor: main
     steps:
       - scan:
