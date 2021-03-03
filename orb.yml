@@ -17,9 +17,7 @@ examples:
                 install_and_configure_cli:
                     jobs:
                         - orb-ecr-image-scan-findings/setup
-                        - orb-ecr-image-scan-findings/scan:
-                            ecr-repository-name: repo-name
-                            ecr-image-id: image-id
+                        - orb-ecr-image-scan-findings/scan
 
 orbs:
   aws-cli: circleci/aws-cli@1.4.0
