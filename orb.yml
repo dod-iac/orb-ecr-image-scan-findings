@@ -30,19 +30,19 @@ commands:
     description: Scans the uploaded ECR image and outputs the findings
     parameters:
       aws-role-arn:
-        type: string
+        type: env_var_name
         description: The ARN of the role to assume. Must have IAM action ecr:DescribeImageScanFindings.
         default: AWS_ROLE_ARN
       aws-role-session-name:
-        type: string
+        type: env_var_name
         description: An identifier for the assumed role session.
         default: AWS_ROLE_SESSION_NAME
       ecr-repository-name:
-        type: string
+        type: env_var_name
         description: The name of the ECR repository where the image has been uploaded and scanned
         default: ECR_REPOSITORY_NAME
       ecr-image-id:
-        type: string
+        type: env_var_name
         description: An object with identifying information for an Amazon ECR image. Either 'imageDigest=string' or 'imageTag=string'.
         default: ECR_IMAGE_ID
     steps:
@@ -91,19 +91,19 @@ jobs:
   scan:
     parameters:
       aws-role-arn:
-        type: string
+        type: env_var_name
         description: The ARN of the role to assume. Must have IAM action ecr:DescribeImageScanFindings.
         default: AWS_ROLE_ARN
       aws-role-session-name:
-        type: string
+        type: env_var_name
         description: An identifier for the assumed role session.
         default: AWS_ROLE_SESSION_NAME
       ecr-repository-name:
-        type: string
+        type: env_var_name
         description: The name of the ECR repository where the image has been uploaded and scanned
         default: ECR_REPOSITORY_NAME
       ecr-image-id:
-        type: string
+        type: env_var_name
         description: An object with identifying information for an Amazon ECR image. Either 'imageDigest=string' or 'imageTag=string'.
         default: ECR_IMAGE_ID
     executor: main
