@@ -13,7 +13,7 @@ jobs:
     executor: main
     steps:
       - checkout
-      - cli/install
+      - circleci-cli/install
       - run: circleci orb validate orb.yml
 
 workflows:
