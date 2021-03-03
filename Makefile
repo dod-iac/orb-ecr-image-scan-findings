@@ -19,3 +19,7 @@ publish-dev: ## Publish dev version of orb
 .PHONY: publish-prod
 publish-prod: ## Publish the prod version of orb
 	circleci orb publish promote $(NAMESPACE)/$(ORB_NAME)@dev:first patch
+
+.PHONY: source-dev
+source-dev: ## View the orb dev source
+	circleci orb source $(NAMESPACE)/$(ORB_NAME)@dev:first
