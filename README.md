@@ -19,6 +19,13 @@ brew install circleci pre-commit
 pre-commit install
 ```
 
+Setup circleci access with:
+
+```sh
+circleci setup
+```
+
+
 ## Testing Changes
 
 Changes should be applied to `orb.yml`.
@@ -26,7 +33,7 @@ Changes should be applied to `orb.yml`.
 Validate your changes using the `circleci orb` command:
 
 ```sh
-circleci orb validate orb.yml
+make validate
 ```
 
 ## Dev Deployment
@@ -34,7 +41,7 @@ circleci orb validate orb.yml
 Publish a dev version to test with:
 
 ```sh
-circleci orb publish orb.yml dod-iac/orb-ecr-image-scan-findings@dev:first
+make publish-dev
 ```
 
 Use this dev version to test in a repository of your choosing before continuing.
@@ -46,12 +53,16 @@ Create a PR in here to review your changes.
 Once approved, publish the production version of the orb:
 
 ```sh
-circleci orb publish promote sandbox/hello-world@dev:first patch
+make publish-prod
 ```
 
 The orb version displayed in the CircleCI orb registry is the new version to use.
 
 Merge the pull requests.
+
+## References
+
+* [Manual Orb Authoring Process](https://circleci.com/docs/2.0/orb-author-validate-publish/)
 
 ## License
 
