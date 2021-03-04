@@ -21,6 +21,54 @@ All the parameters are environment variables. These are described below:
 | ECR_REPOSITORY_NAME | The name of the ECR repository where the image has been uploaded and scanned |
 | ECR_IMAGE_ID | An object with identifying information for an Amazon ECR image. Either 'imageDigest=string' or 'imageTag=string'. |
 
+### Examples
+
+Usage when using a sha256 sum as the image digest:
+
+```yml
+orbs:
+  ecr-image-scan-findings: dod-iac/ecr-image-scan-findings@1.0.0
+
+jobs:
+  push:
+    executor: main
+    environment:
+      ECR_REPOSITORY_NAME: <REPO_NAME>
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
+      - ecr-image-scan-findings/setup
+      - run: ./scripts/push-image.sh
+      - run: |
+          ECR_IMAGE_ID=sha256:<IMAGE_SHA>
+          echo "export ECR_IMAGE_ID=imageDigest=${ECR_IMAGE_ID}" >> $BASH_ENV
+      - ecr-image-scan-findings/scan
+```
+
+Usage when using an image tag:
+
+```yml
+orbs:
+  ecr-image-scan-findings: dod-iac/ecr-image-scan-findings@1.0.0
+
+jobs:
+  push:
+    executor: main
+    environment:
+      ECR_REPOSITORY_NAME: <REPO_NAME>
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
+      - ecr-image-scan-findings/setup
+      - run: ./scripts/push-image.sh
+      - run: |
+          ECR_IMAGE_ID=<IMAGE_TAG>
+          echo "export ECR_IMAGE_ID=imageTag=${ECR_IMAGE_ID}" >> $BASH_ENV
+      - ecr-image-scan-findings/scan
+```
+
 ## Developer Setup
 
 Install dependencies:
