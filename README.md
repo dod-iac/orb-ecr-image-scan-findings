@@ -1,10 +1,10 @@
-# orb-ecr-image-scan-findings
+# CircleCI Orb ecr-image-scan-findings
 
 Scans the uploaded ECR image and outputs the findings.
 
 ## Usage
 
-For full usage guidelines, see the [orb registry listing](https://circleci.com/orbs/registry/orb/dod-iac/orb-ecr-image-scan-findings).
+For full usage guidelines, see the [orb registry listing](https://circleci.com/orbs/registry/orb/dod-iac/ecr-image-scan-findings).
 
 ### Expectations
 

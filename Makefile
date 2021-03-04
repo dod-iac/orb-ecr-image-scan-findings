@@ -1,12 +1,16 @@
 
 NAMESPACE=dod-iac
-ORB_NAME=orb-ecr-image-scan-findings
+ORB_NAME=ecr-image-scan-findings
 
 .PHONY: help
 help: ## Print the help documentation
 	@grep -E '^[\/a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 # ----- CLI Targets -----
+
+.PHONY: create
+create: ## Create the orb
+	circleci orb create $(NAMESPACE)/$(ORB_NAME)
 
 .PHONY: validate
 validate: ## Validate the orb

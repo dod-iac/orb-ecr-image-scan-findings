@@ -11,13 +11,13 @@ examples:
         description: Install the required CLI utilities, if not available
         usage:
             orbs:
-              orb-ecr-image-scan-findings: dod-iac/orb-ecr-image-scan-findings@1.0.0
+              ecr-image-scan-findings: dod-iac/ecr-image-scan-findings@1.0.0
             version: 2.1
             workflows:
                 install_and_configure_cli:
                     jobs:
-                        - orb-ecr-image-scan-findings/setup
-                        - orb-ecr-image-scan-findings/scan
+                        - ecr-image-scan-findings/setup
+                        - ecr-image-scan-findings/scan
 
 orbs:
   aws-cli: circleci/aws-cli@1.4.0
