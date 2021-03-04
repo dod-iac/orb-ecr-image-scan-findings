@@ -45,6 +45,7 @@ commands:
         default: ECR_IMAGE_ID
     steps:
       - run:
+          name: Scan ECR Image
           command: |
             if [[ -n "$<< parameters.aws-role-arn >>" ]] && [[ -n "$<< parameters.aws-role-session-name >>" ]]; then
               echo "AWS_ROLE_ARN: $<< parameters.aws-role-arn >>"
