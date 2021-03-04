@@ -10,6 +10,17 @@ For full usage guidelines, see the [orb registry listing](https://circleci.com/o
 
 * Use this orb with an ECR repository where an image has been uploaded
 
+### Parameters
+
+All the parameters are environment variables. These are described below:
+
+| Name | Description |
+| --- | --- |
+| AWS_ROLE_ARN | The ARN of the role to assume. Must have IAM action ecr:DescribeImageScanFindings. |
+| AWS_ROLE_SESSION_NAME | An identifier for the assumed role session. |
+| ECR_REPOSITORY_NAME | The name of the ECR repository where the image has been uploaded and scanned |
+| ECR_IMAGE_ID | An object with identifying information for an Amazon ECR image. Either 'imageDigest=string' or 'imageTag=string'. |
+
 ## Developer Setup
 
 Install dependencies:
